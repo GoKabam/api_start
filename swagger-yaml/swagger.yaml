@@ -14,20 +14,30 @@ info:
 host: "virtserver.swaggerhub.com"
 basePath: "/willwoodlief/gokabam.alpha/1.0.0"
 tags:
-- name: "admins"
-  description: "Secured Admin-only calls"
 - name: "users"
-  description: "Operations/information about regular users"
+  description: "Operations/information about regular users. Includes both public info\
+    \ anyone can get, and also setting private account information"
 - name: "companies"
-  description: "Viewing or Changing data about companies"
+  description: "Company Info, Settings and Finances. Some company info is public"
 - name: "sellers"
-  description: "Salesmen"
+  description: "Salesmen and selling activities. Includes customer relations for customers.\
+    \ Includes sales flow"
 - name: "self"
   description: "an operation which gets information only for the account that this\
     \ call has credentials for, includes private and public information"
 - name: "public"
   description: "Information which anyone can see. If it does not have this tag, then\
     \ it requires credentials to see"
+- name: "customer_services"
+  description: "Controls Regular Users,Salesmen and Companies. Can change any setting\
+    \ for regular accounts"
+- name: "higher_admins"
+  description: "Controls privileged Accounts (for example this company is also a regular\
+    \ company in the api but private info and settings can only be accessed using\
+    \ a higher_admin privilege)"
+- name: "root"
+  description: "Ultimate authority. Controls who is on the higher admin list. API\
+    \ settings in general controlled from here"
 schemes:
 - "https"
 paths: {}
