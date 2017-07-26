@@ -1,0 +1,34 @@
+---
+swagger: "2.0"
+info:
+  description: "GoKabam API , access to all the GoKabam Services\n\nThis API will\
+    \ cover all functionality for the company, including private management, administration\
+    \ and finances\n"
+  version: "1.0.0"
+  title: "GoKabam API"
+  contact:
+    email: "willwoodlief@gokabam.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "virtserver.swaggerhub.com"
+basePath: "/willwoodlief/gokabam.alpha/1.0.0"
+tags:
+- name: "admins"
+  description: "Secured Admin-only calls"
+- name: "users"
+  description: "Operations/information about regular users"
+- name: "companies"
+  description: "Viewing or Changing data about companies"
+- name: "sellers"
+  description: "Salesmen"
+- name: "self"
+  description: "an operation which gets information only for the account that this\
+    \ call has credentials for, includes private and public information"
+- name: "public"
+  description: "Information which anyone can see. If it does not have this tag, then\
+    \ it requires credentials to see"
+schemes:
+- "https"
+paths: {}
+definitions: {}
