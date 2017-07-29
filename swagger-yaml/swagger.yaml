@@ -15,8 +15,9 @@ host: "virtserver.swaggerhub.com"
 basePath: "/willwoodlief/gokabam.alpha/1.0.0"
 tags:
 - name: "users"
-  description: "Operations/information about regular users. Includes both public info\
-    \ anyone can get, and also setting private account information"
+  description: "Operations/information about regular users"
+- name: "me"
+  description: "An operation just effecting the logged in user"
 - name: "companies"
   description: "Company Info, Settings and Finances. Some company info is public"
 - name: "sellers"
@@ -55,6 +56,7 @@ paths:
     get:
       tags:
       - "users"
+      - "me"
       summary: "Gets Informaton about my account"
       description: "returns all information about this > including private , protected,\
         \ and public."
