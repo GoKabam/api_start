@@ -50,7 +50,77 @@ produces:
 - "application/xml"
 security:
 - OauthSecurity: []
-paths: {}
+paths:
+  /me:
+    get:
+      tags:
+      - "users"
+      summary: "Gets Informaton about my account"
+      description: "returns all information about this > including private , protected,\
+        \ and public."
+      operationId: "readMe"
+      parameters:
+      - name: "User-Agent"
+        in: "header"
+        description: "All API consumers MUST provide a user agent"
+        required: true
+        type: "string"
+      - name: "pageSize"
+        in: "query"
+        description: "Number of persons returned"
+        required: false
+        type: "integer"
+        default: 20
+        maximum: 100
+        exclusiveMaximum: false
+        minimum: 0
+        exclusiveMinimum: true
+        multipleOf: 10
+        format: "int32"
+      - name: "pageNumber"
+        in: "query"
+        description: "Page number"
+        required: false
+        type: "integer"
+        default: 1
+      responses:
+        200:
+          description: "A list of Person"
+          schema:
+            $ref: "#/definitions/Error"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "integer"
+              description: "How many calls consumer can do"
+            X-Rate-Limit-Reset:
+              type: "string"
+              format: "date-time"
+              description: "When rate limit will be reset"
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/Error"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "integer"
+              description: "How many calls consumer can do"
+            X-Rate-Limit-Reset:
+              type: "string"
+              format: "date-time"
+              description: "When rate limit will be reset"
+        default:
+          description: "A totally unexpected response"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "integer"
+              description: "How many calls consumer can do"
+            X-Rate-Limit-Reset:
+              type: "string"
+              format: "date-time"
+              description: "When rate limit will be reset"
+      security:
+      - OauthSecurity:
+        - "read:user"
 securityDefinitions:
   OauthSecurity:
     description: "New Oauth security system. Do not use MediaSecurity or LegacySecurity."
@@ -59,6 +129,163 @@ securityDefinitions:
     tokenUrl: "https://oauth.simple.api/oauth/token"
     flow: "accessCode"
     scopes:
-      write:pets: "modify pets in your account"
-      read:pets: "read your pets"
-definitions: {}
+      write:user: "write user information that is not your user"
+      read:user: "read user information that is not yours"
+      read:me: "read my information, all users are automatically granted this"
+      write:me: "write my information, all users are automatically granted this"
+definitions:
+  UserPrivateInfo:
+    properties:
+      notes:
+        type: "string"
+        description: "A list of thoughts and notes"
+    title: "Private User Information"
+    description: "Only the user or authorized people will ever see this"
+  UserProtectedInfo:
+    properties:
+      friendList:
+        type: "string"
+        description: "A list of friend information, right how just a string will be\
+          \ an array later"
+    title: "Protected UserInformation"
+    description: "Friends have access to this information"
+  UserPublicInfo:
+    required:
+    - "username"
+    properties:
+      firstName:
+        type: "string"
+        example: "John"
+        description: "first name"
+      lastName:
+        type: "string"
+        example: "Doe"
+        description: "last name"
+      username:
+        type: "string"
+        example: "john1doe6"
+        description: "Username used to connect to the service"
+        minLength: 8
+        maxLength: 64
+        pattern: "[a-z0-9]{8,64}"
+      lastTimeOnline:
+        type: "string"
+        format: "date-time"
+        example: "2016-06-10T12:36:58.014Z"
+        description: "The last time this person was connected to the service as a"
+        readOnly: true
+    title: "Public User Information"
+    description: "Anyone can see this information at all times"
+  ErrorMessage:
+    required:
+    - "longMessage"
+    - "shortMessage"
+    properties:
+      longMessage:
+        type: "string"
+        description: "A long error description"
+      shortMessage:
+        type: "string"
+        description: "A short error description"
+    title: "MultiDeviceErrorMessage"
+    description: "An error message with a long and a short description"
+  MultilingualErrorMessage:
+    type: "object"
+    properties:
+      defaultLanguage:
+        $ref: "#/definitions/ErrorMessage"
+    title: "MultiLingualMultiDeviceErrorMessage"
+    description: "An multilingual error message (hashmap) with a long and a short\
+      \ description"
+    example:
+      defaultLanguage:
+        longMessage: "We're deeply sorry but an error occured"
+        shortMessage: "Error"
+      fr:
+        longMessage: "Nous sommes dÃ©solÃ© mais une erreur est survenu"
+        shortMessage: "Erreur"
+    additionalProperties:
+      $ref: "#/definitions/ErrorMessage"
+  Error:
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "string"
+        example: "UNERR"
+        description: "# Error Enum Definitions\n\n  | Name | Definition |\n  | -------\
+          \ | -------- |\n  | DBERR   | A database error occured    |\n  | DBERR \
+          \  | A database error occured    | \nsome texts\nText attributes _italic_,\
+          \ *italic*, __bold__, **bold**, `monospace`.                     \nHorizontal\
+          \ rule \n\n  ---\n\n  Bullet list \n\n    * apples\n    * oranges\n    *\
+          \ pears\n\n  Numbered list\n\n    1. apples\n    2. oranges\n    3. pears\n\
+          \n  A [link](http://example.com).\n\n  \n"
+        enum:
+        - "DBERR"
+        - "NTERR"
+        - "UNERR"
+      message:
+        $ref: "#/definitions/MultilingualErrorMessage"
+    title: "MultiLingualMultiDeviceError"
+    description: "Give full information about the problem"
+parameters:
+  pageSize:
+    name: "pageSize"
+    in: "query"
+    description: "Number of persons returned"
+    required: false
+    type: "integer"
+    default: 20
+    maximum: 100
+    exclusiveMaximum: false
+    minimum: 0
+    exclusiveMinimum: true
+    multipleOf: 10
+    format: "int32"
+  pageNumber:
+    name: "pageNumber"
+    in: "query"
+    description: "Page number"
+    required: false
+    type: "integer"
+    default: 1
+  userAgent:
+    name: "User-Agent"
+    in: "header"
+    description: "All API consumers MUST provide a user agent"
+    required: true
+    type: "string"
+responses:
+  Standard500ErrorResponse:
+    description: "An unexpected error occured."
+    schema:
+      $ref: "#/definitions/Error"
+    headers:
+      X-Rate-Limit-Remaining:
+        type: "integer"
+        description: "How many calls consumer can do"
+      X-Rate-Limit-Reset:
+        type: "string"
+        format: "date-time"
+        description: "When rate limit will be reset"
+  PersonDoesNotExistResponse:
+    description: "Person does not exist."
+    headers:
+      X-Rate-Limit-Remaining:
+        type: "integer"
+        description: "How many calls consumer can do"
+      X-Rate-Limit-Reset:
+        type: "string"
+        format: "date-time"
+        description: "When rate limit will be reset"
+  TotallyUnexpectedResponse:
+    description: "A totally unexpected response"
+    headers:
+      X-Rate-Limit-Remaining:
+        type: "integer"
+        description: "How many calls consumer can do"
+      X-Rate-Limit-Reset:
+        type: "string"
+        format: "date-time"
+        description: "When rate limit will be reset"
