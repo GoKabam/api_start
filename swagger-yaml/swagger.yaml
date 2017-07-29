@@ -87,9 +87,7 @@ paths:
         default: 1
       responses:
         200:
-          description: "A list of Person"
-          schema:
-            $ref: "#/definitions/Error"
+          description: "Get My Information"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -100,6 +98,8 @@ paths:
               description: "When rate limit will be reset"
         500:
           description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/Error"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -123,7 +123,7 @@ paths:
         - "read:user"
 securityDefinitions:
   OauthSecurity:
-    description: "New Oauth security system. Do not use MediaSecurity or LegacySecurity."
+    description: "Oauth security system. All operations are used with it"
     type: "oauth2"
     authorizationUrl: "https://oauth.simple.api/oauth/authorize"
     tokenUrl: "https://oauth.simple.api/oauth/token"
@@ -259,6 +259,8 @@ parameters:
 responses:
   Standard500ErrorResponse:
     description: "An unexpected error occured."
+    schema:
+      $ref: "#/definitions/Error"
     headers:
       X-Rate-Limit-Remaining:
         type: "integer"
