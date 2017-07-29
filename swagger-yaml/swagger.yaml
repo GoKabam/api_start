@@ -40,5 +40,13 @@ tags:
     \ settings in general controlled from here"
 schemes:
 - "https"
+consumes:
+- "application/json"
+- "application/x-yaml"
+- "application/xml"
+produces:
+- "application/json"
+- "application/x-yaml"
+- "application/xml"
 paths: {}
 definitions: {}
