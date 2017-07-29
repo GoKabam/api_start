@@ -848,6 +848,10 @@ margin-bottom: 20px;
                     <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
 
+                                <li class="nav-header" data-group="Me"><a href="#api-Me">API Methods - Me</a></li>
+                                    <li data-group="Me" data-name="readMe" class="">
+                                        <a href="#api-Me-readMe">readMe</a>
+                                    </li>
                                 <li class="nav-header" data-group="Users"><a href="#api-Users">API Methods - Users</a></li>
                                     <li data-group="Users" data-name="readMe" class="">
                                         <a href="#api-Users-readMe">readMe</a>
@@ -883,6 +887,694 @@ This API will cover all functionality for the company, including private managem
             </div>
             <div id="sections">
 
+
+                            <section id="api-Me">
+                                <h1>Me</h1>
+
+
+
+
+
+
+
+                                    <div id="api-Me-readMe">
+
+                                        <article id="api-Me-readMe-0" data-group="User" data-name="readMe" data-version="0">
+                                            <div class="pull-left">
+                                                <h1>readMe</h1>
+                                                <p>Gets Informaton about my account</p>
+                                            </div>
+                                            <div class="pull-right">
+
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <p></p>
+                                            <p class="marked">returns all information about this &gt; including private , protected, and public.</p>
+                                            <p></p>
+                                            <br />
+
+                                            <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/me</span></code></pre>
+
+                                            <p>
+                                                <h3>Usage and SDK Samples</h3>
+                                            </p>
+
+                                            <ul class="nav nav-tabs nav-tabs-examples">
+                                                <li class="active">
+                                                    <a href="#examples-Me-readMe-0-curl">Curl</a>
+                                                </li>
+                                                <li class="">
+              <a href="#examples-Me-readMe-0-java">Java</a>
+            </li>
+            <li class="">
+              <a href="#examples-Me-readMe-0-android">Android</a>
+            </li>
+            <!--<li class="">
+              <a href="#examples-Me-readMe-0-groovy">Groovy</a>
+            </li>-->
+                                                <li class="">
+                                                    <a href="#examples-Me-readMe-0-objc">Obj-C</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="#examples-Me-readMe-0-javascript">JavaScript</a>
+                                                </li>
+                                                <!--<li class="">
+              <a href="#examples-Me-readMe-0-angular">Angular</a>
+            </li>-->
+                                                <li class="">
+                                                    <a href="#examples-Me-readMe-0-csharp">C#</a>
+                                                </li>
+                                                <li class="">
+              <a href="#examples-Me-readMe-0-php">PHP</a>
+            </li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="examples-Me-readMe-0-curl">
+                                                    <pre class="prettyprint"><code class="language-bsh">
+curl -X <span style="text-transform: uppercase;">get</span> "https://virtserver.swaggerhub.com/willwoodlief/gokabam.alpha/1.0.0/me?pageSize=&pageNumber="
+
+
+</code></pre>
+                                                </div>
+
+                                                <div class="tab-pane" id="examples-Me-readMe-0-java">
+                                                  <pre class="prettyprint"><code class="language-java">
+import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import .MeApi;
+
+import java.io.File;
+import java.util.*;
+
+public class MeApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure OAuth2 access token for authorization: OauthSecurity
+        OAuth OauthSecurity = (OAuth) defaultClient.getAuthentication("OauthSecurity");
+        OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
+
+        MeApi apiInstance = new MeApi();
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        Integer pageSize = 56; // Integer | Number of persons returned
+        Integer pageNumber = 56; // Integer | Page number
+        try {
+            Error result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MeApi#readMe");
+            e.printStackTrace();
+        }
+    }
+}
+
+                                                  </code></pre>
+          </div>
+
+
+                                                <div class="tab-pane" id="examples-Me-readMe-0-android">
+                                                  <pre class="prettyprint"><code class="language-java">
+import .MeApi;
+
+public class MeApiExample {
+
+    public static void main(String[] args) {
+        MeApi apiInstance = new MeApi();
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        Integer pageSize = 56; // Integer | Number of persons returned
+        Integer pageNumber = 56; // Integer | Page number
+        try {
+            Error result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MeApi#readMe");
+            e.printStackTrace();
+        }
+    }
+}
+
+                                                  </code></pre>
+          </div>
+
+          <!--
+          <div class="tab-pane" id="examples-Me-readMe-0-groovy">
+            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+          </div> -->
+
+
+                                                <div class="tab-pane" id="examples-Me-readMe-0-objc">
+                                                    <pre class="prettyprint"><code class="language-cpp">
+Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure OAuth2 access token for authorization: (authentication scheme: OauthSecurity)
+[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+
+
+String *userAgent = userAgent_example; // All API consumers MUST provide a user agent
+Integer *pageSize = 56; // Number of persons returned (optional) (default to 20)
+Integer *pageNumber = 56; // Page number (optional) (default to 1)
+
+MeApi *apiInstance = [[MeApi alloc] init];
+
+// Gets Informaton about my account
+[apiInstance readMeWith:userAgent
+    pageSize:pageSize
+    pageNumber:pageNumber
+              completionHandler: ^(Error output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+
+                                                    </code></pre>
+                                                </div>
+                                                <div class="tab-pane" id="examples-Me-readMe-0-javascript">
+                                                    <pre class="prettyprint"><code class="language-js">
+var  = require('');
+var defaultClient = .ApiClient.instance;
+
+// Configure OAuth2 access token for authorization: OauthSecurity
+var OauthSecurity = defaultClient.authentications['OauthSecurity'];
+OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
+
+var api = new .MeApi()
+
+var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent
+
+var opts = { 
+  'pageSize': 56, // {Integer} Number of persons returned
+  'pageNumber': 56 // {Integer} Page number
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.readMe(userAgent, opts, callback);
+
+                                                    </code></pre>
+                                                </div>
+
+                                                <!--<div class="tab-pane" id="examples-Me-readMe-0-angular">
+            <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+          </div>-->
+
+                                                <div class="tab-pane" id="examples-Me-readMe-0-csharp">
+                                                    <pre class="prettyprint"><code class="language-cs">
+using System;
+using System.Diagnostics;
+using .Api;
+using .Client;
+using ;
+
+namespace Example
+{
+    public class readMeExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: OauthSecurity
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new MeApi();
+            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent
+            var pageSize = 56;  // Integer | Number of persons returned (optional)  (default to 20)
+            var pageNumber = 56;  // Integer | Page number (optional)  (default to 1)
+
+            try
+            {
+                // Gets Informaton about my account
+                Error result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling MeApi.readMe: " + e.Message );
+            }
+        }
+    }
+}
+
+                                                    </code></pre>
+                                                </div>
+
+
+                                                <div class="tab-pane" id="examples-Me-readMe-0-php">
+                                                  <pre class="prettyprint"><code class="language-php">
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure OAuth2 access token for authorization: OauthSecurity
+io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+$api_instance = new io.swagger.client\Api\MeApi();
+$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+$pageSize = 56; // Integer | Number of persons returned
+$pageNumber = 56; // Integer | Page number
+
+try {
+    $result = $api_instance->readMe($userAgent, $pageSize, $pageNumber);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MeApi->readMe: ', $e->getMessage(), PHP_EOL;
+}
+
+                                                  </code></pre>
+          </div>
+
+                                            </div>
+
+
+
+
+
+                                            <h2>Parameters</h2>
+
+
+
+
+                                                <div class="methodsubtabletitle">Header parameters</div>
+                                                <table id="methodsubtable">
+                                                    <tr>
+                                                        <th width="150px">Name</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                    <!---->
+                                                        <tr><td style="width:150px;">userAgent*</td>
+<td>
+
+
+<script>
+												$(document).ready(function() {
+													var schemaWrapper = {
+  "name" : "User-Agent",
+  "in" : "header",
+  "description" : "All API consumers MUST provide a user agent",
+  "required" : true,
+  "type" : "string",
+  "x-codegen-hasMoreRequired" : false
+};
+													var schema = schemaWrapper;
+
+
+
+
+													var view = new JSONSchemaView(schema,0);
+													var result = $('#d2e199_readMe_userAgent');
+													result.empty();
+													result.append(view.render());
+
+
+
+
+
+												});
+												</script>
+												<div id="d2e199_readMe_userAgent"></div>
+</td>
+</tr>
+
+
+                                                </table>
+
+
+
+
+                                                <div class="methodsubtabletitle">Query parameters</div>
+                                                <table id="methodsubtable">
+                                                    <tr>
+                                                        <th width="150px">Name</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                    <!---->
+                                                        <tr><td style="width:150px;">pageSize</td>
+<td>
+
+
+<script>
+												$(document).ready(function() {
+													var schemaWrapper = {
+  "name" : "pageSize",
+  "in" : "query",
+  "description" : "Number of persons returned",
+  "required" : false,
+  "type" : "integer",
+  "default" : 20,
+  "maximum" : 100,
+  "exclusiveMaximum" : false,
+  "minimum" : 0,
+  "exclusiveMinimum" : true,
+  "multipleOf" : 10,
+  "format" : "int32",
+  "x-codegen-hasMoreRequired" : true,
+  "x-codegen-hasMoreOptional" : true
+};
+													var schema = schemaWrapper;
+
+
+
+
+													var view = new JSONSchemaView(schema,0);
+													var result = $('#d2e199_readMe_pageSize');
+													result.empty();
+													result.append(view.render());
+
+
+
+
+
+												});
+												</script>
+												<div id="d2e199_readMe_pageSize"></div>
+</td>
+</tr>
+
+                                                        <tr><td style="width:150px;">pageNumber</td>
+<td>
+
+
+<script>
+												$(document).ready(function() {
+													var schemaWrapper = {
+  "name" : "pageNumber",
+  "in" : "query",
+  "description" : "Page number",
+  "required" : false,
+  "type" : "integer",
+  "default" : 1,
+  "x-codegen-hasMoreOptional" : false
+};
+													var schema = schemaWrapper;
+
+
+
+
+													var view = new JSONSchemaView(schema,0);
+													var result = $('#d2e199_readMe_pageNumber');
+													result.empty();
+													result.append(view.render());
+
+
+
+
+
+												});
+												</script>
+												<div id="d2e199_readMe_pageNumber"></div>
+</td>
+</tr>
+
+                                                </table>
+
+                                            <h2>Responses</h2>
+
+                                                <h3> Status: 200 - A list of Person </h3>
+
+                                                <ul class="nav nav-tabs nav-tabs-examples" >
+
+                                                    <li class="active">
+                                                        <a href="#examples-Me-readMe-schema">Schema</a>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+
+
+
+
+                                                <div class="tab-content" style='margin-bottom: 10px;'>
+
+
+
+                                                    <div class="tab-pane active" id="examples-Me-readMe-schema">
+
+
+
+
+                                                        <div id='examples-Me-readMe-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                    var schemaWrapper = {
+  "description" : "A list of Person",
+  "schema" : {
+    "$ref" : "#/definitions/Error"
+  },
+  "headers" : {
+    "X-Rate-Limit-Remaining" : {
+      "type" : "integer",
+      "description" : "How many calls consumer can do"
+    },
+    "X-Rate-Limit-Reset" : {
+      "type" : "string",
+      "format" : "date-time",
+      "description" : "When rate limit will be reset"
+    }
+  }
+};
+                                                                    var schema = schemaWrapper.schema;
+                                                                    schemaWrapper.definitions = defs;
+                                                                    //console.log(JSON.stringify(schema))
+                                                                    JsonRefs.resolveRefs(schemaWrapper, {
+                                                                        "depth": 3,
+                                                                        "resolveRemoteRefs": false,
+                                                                        "resolveFileRefs": false
+                                                                    }, function(err, resolved, metadata) {
+
+                                                                        //console.log(JSON.stringify(resolved));
+
+
+
+                                                                        var view = new JSONSchemaView(resolved.schema, 3);
+                                                                        $('#examples-Me-readMe-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Me-readMe-schema-200');
+                                                                        result.empty();
+                                                                        result.append(view.render());
+                                                                    });
+
+
+
+
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <input id='examples-Me-readMe-schema-data' type='hidden' value=''></input>
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+
+                                                <h3> Status: 500 - An unexpected error occured. </h3>
+
+                                                <ul class="nav nav-tabs nav-tabs-examples" >
+
+                                                    <li class="active">
+                                                        <a href="#examples-Me-readMe-schema">Schema</a>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+
+
+
+
+                                                <div class="tab-content" style='margin-bottom: 10px;'>
+
+
+
+                                                    <div class="tab-pane active" id="examples-Me-readMe-schema">
+
+
+
+
+                                                        <div id='examples-Me-readMe-schema-500' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                    var schemaWrapper = {
+  "description" : "An unexpected error occured.",
+  "headers" : {
+    "X-Rate-Limit-Remaining" : {
+      "type" : "integer",
+      "description" : "How many calls consumer can do"
+    },
+    "X-Rate-Limit-Reset" : {
+      "type" : "string",
+      "format" : "date-time",
+      "description" : "When rate limit will be reset"
+    }
+  }
+};
+                                                                    var schema = schemaWrapper.schema;
+                                                                    schemaWrapper.definitions = defs;
+                                                                    //console.log(JSON.stringify(schema))
+                                                                    JsonRefs.resolveRefs(schemaWrapper, {
+                                                                        "depth": 3,
+                                                                        "resolveRemoteRefs": false,
+                                                                        "resolveFileRefs": false
+                                                                    }, function(err, resolved, metadata) {
+
+                                                                        //console.log(JSON.stringify(resolved));
+
+
+
+                                                                        var view = new JSONSchemaView(resolved.schema, 3);
+                                                                        $('#examples-Me-readMe-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Me-readMe-schema-500');
+                                                                        result.empty();
+                                                                        result.append(view.render());
+                                                                    });
+
+
+
+
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <input id='examples-Me-readMe-schema-data' type='hidden' value=''></input>
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+
+                                                <h3> Status: 0 - A totally unexpected response </h3>
+
+                                                <ul class="nav nav-tabs nav-tabs-examples" >
+
+                                                    <li class="active">
+                                                        <a href="#examples-Me-readMe-schema">Schema</a>
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+
+
+
+
+                                                <div class="tab-content" style='margin-bottom: 10px;'>
+
+
+
+                                                    <div class="tab-pane active" id="examples-Me-readMe-schema">
+
+
+
+
+                                                        <div id='examples-Me-readMe-schema-0' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                    var schemaWrapper = {
+  "description" : "A totally unexpected response",
+  "headers" : {
+    "X-Rate-Limit-Remaining" : {
+      "type" : "integer",
+      "description" : "How many calls consumer can do"
+    },
+    "X-Rate-Limit-Reset" : {
+      "type" : "string",
+      "format" : "date-time",
+      "description" : "When rate limit will be reset"
+    }
+  }
+};
+                                                                    var schema = schemaWrapper.schema;
+                                                                    schemaWrapper.definitions = defs;
+                                                                    //console.log(JSON.stringify(schema))
+                                                                    JsonRefs.resolveRefs(schemaWrapper, {
+                                                                        "depth": 3,
+                                                                        "resolveRemoteRefs": false,
+                                                                        "resolveFileRefs": false
+                                                                    }, function(err, resolved, metadata) {
+
+                                                                        //console.log(JSON.stringify(resolved));
+
+
+
+                                                                        var view = new JSONSchemaView(resolved.schema, 3);
+                                                                        $('#examples-Me-readMe-schema-data').val(JSON.stringify(resolved.schema));
+                                                                        var result = $('#examples-Me-readMe-schema-0');
+                                                                        result.empty();
+                                                                        result.append(view.render());
+                                                                    });
+
+
+
+
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <input id='examples-Me-readMe-schema-data' type='hidden' value=''></input>
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+
+
+
+
+
+
+                                        </article>
+
+                                    </div>
+
+                                    <hr>
+
+                            </section>
 
                             <section id="api-Users">
                                 <h1>Users</h1>
@@ -1591,7 +2283,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2017-07-29T19:44:41.674Z
+                    Generated 2017-07-29T19:47:37.425Z
                 </div>
             </div>
         </div>
