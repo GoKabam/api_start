@@ -810,8 +810,8 @@ margin-bottom: 20px;
       "$ref" : "#/definitions/StatusMessages"
     }
   },
-  "title" : "Operation Successful",
-  "description" : "Give full information about the problem"
+  "title" : "Standard Response Status",
+  "description" : "Gives an overview and can also list specific issues or data"
 };
   defs.StatusMessages = {
   "title" : "Status Messages",
@@ -828,7 +828,7 @@ margin-bottom: 20px;
       "type" : "string",
       "example" : "OK",
       "description" : "A short human readable code",
-      "enum" : [ "OK", "WARNING", "ERROR" ]
+      "enum" : [ "OK", "WARNING", "ERROR", "INFO" ]
     },
     "code" : {
       "type" : "integer",
@@ -1080,7 +1080,7 @@ public class MeApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
@@ -1105,7 +1105,7 @@ public class MeApiExample {
 
     public static void main(String[] args) {
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
@@ -1135,7 +1135,7 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent
+String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
 Integer *pageSize = 56; // Number of persons returned (optional) (default to 20)
 Integer *pageNumber = 56; // Page number (optional) (default to 1)
 
@@ -1167,7 +1167,7 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .MeApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent
+var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
 
 var opts = { 
   'pageSize': 56, // {Integer} Number of persons returned
@@ -1209,7 +1209,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MeApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent
+            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
             var pageSize = 56;  // Integer | Number of persons returned (optional)  (default to 20)
             var pageNumber = 56;  // Integer | Page number (optional)  (default to 1)
 
@@ -1240,7 +1240,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\MeApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
 $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
@@ -1281,7 +1281,7 @@ try {
 													var schemaWrapper = {
   "name" : "User-Agent",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent",
+  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
   "required" : true,
   "type" : "string",
   "x-codegen-hasMoreRequired" : false
@@ -1435,21 +1435,7 @@ try {
   "schema" : {
     "$ref" : "#/definitions/AllReadableUserInfo"
   },
-  "headers" : {
-    "X-Rate-Limit-Remaining" : {
-      "type" : "integer",
-      "description" : "How many calls consumer can do"
-    },
-    "X-Rate-Limit-Reset" : {
-      "type" : "string",
-      "format" : "date-time",
-      "description" : "When rate limit will be reset"
-    },
-    "X-Rate-Limit-Limit" : {
-      "type" : "integer",
-      "description" : "What is the limit"
-    }
-  }
+  "headers" : { }
 };
                                                                     var schema = schemaWrapper.schema;
                                                                     schemaWrapper.definitions = defs;
@@ -1779,10 +1765,11 @@ public class MeApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#writeMe");
             e.printStackTrace();
@@ -1802,10 +1789,11 @@ public class MeApiExample {
 
     public static void main(String[] args) {
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#writeMe");
             e.printStackTrace();
@@ -1830,7 +1818,7 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent
+String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
 AllWritableUserInfo *userInfo = ; // Data the user can update
 
 MeApi *apiInstance = [[MeApi alloc] init];
@@ -1838,7 +1826,10 @@ MeApi *apiInstance = [[MeApi alloc] init];
 // Updates Information about my account
 [apiInstance writeMeWith:userAgent
     userInfo:userInfo
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(StandardResponseStatus output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -1857,7 +1848,7 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .MeApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent
+var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
 
 var userInfo = ; // {AllWritableUserInfo} Data the user can update
 
@@ -1866,7 +1857,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.writeMe(userAgent, userInfo, callback);
@@ -1897,13 +1888,14 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MeApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent
+            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
             var userInfo = new AllWritableUserInfo(); // AllWritableUserInfo | Data the user can update
 
             try
             {
                 // Updates Information about my account
-                apiInstance.writeMe(userAgent, userInfo);
+                StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -1926,11 +1918,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\MeApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
 $userInfo = ; // AllWritableUserInfo | Data the user can update
 
 try {
-    $api_instance->writeMe($userAgent, $userInfo);
+    $result = $api_instance->writeMe($userAgent, $userInfo);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeApi->writeMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -1965,7 +1958,7 @@ try {
 													var schemaWrapper = {
   "name" : "User-Agent",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent",
+  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
   "required" : true,
   "type" : "string",
   "x-codegen-hasMoreRequired" : true,
@@ -2054,7 +2047,7 @@ try {
 
                                             <h2>Responses</h2>
 
-                                                <h3> Status: 204 - User Updated. </h3>
+                                                <h3> Status: 204 - The items were updated </h3>
 
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
@@ -2085,7 +2078,10 @@ try {
                                                             <script>
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
-  "description" : "User Updated.",
+  "description" : "The items were updated",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -2145,7 +2141,7 @@ try {
 
 
 
-                                                <h3> Status: 400 - User could not be updated. </h3>
+                                                <h3> Status: 400 - The items were updated </h3>
 
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
@@ -2176,7 +2172,10 @@ try {
                                                             <script>
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
-  "description" : "User could not be updated.",
+  "description" : "The items were updated",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -2525,7 +2524,7 @@ public class UsersApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
@@ -2550,7 +2549,7 @@ public class UsersApiExample {
 
     public static void main(String[] args) {
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
@@ -2580,7 +2579,7 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent
+String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
 Integer *pageSize = 56; // Number of persons returned (optional) (default to 20)
 Integer *pageNumber = 56; // Page number (optional) (default to 1)
 
@@ -2612,7 +2611,7 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .UsersApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent
+var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
 
 var opts = { 
   'pageSize': 56, // {Integer} Number of persons returned
@@ -2654,7 +2653,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UsersApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent
+            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
             var pageSize = 56;  // Integer | Number of persons returned (optional)  (default to 20)
             var pageNumber = 56;  // Integer | Page number (optional)  (default to 1)
 
@@ -2685,7 +2684,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\UsersApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
 $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
@@ -2726,7 +2725,7 @@ try {
 													var schemaWrapper = {
   "name" : "User-Agent",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent",
+  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
   "required" : true,
   "type" : "string"
 };
@@ -2876,21 +2875,7 @@ try {
   "schema" : {
     "$ref" : "#/definitions/AllReadableUserInfo"
   },
-  "headers" : {
-    "X-Rate-Limit-Remaining" : {
-      "type" : "integer",
-      "description" : "How many calls consumer can do"
-    },
-    "X-Rate-Limit-Reset" : {
-      "type" : "string",
-      "format" : "date-time",
-      "description" : "When rate limit will be reset"
-    },
-    "X-Rate-Limit-Limit" : {
-      "type" : "integer",
-      "description" : "What is the limit"
-    }
-  }
+  "headers" : { }
 };
                                                                     var schema = schemaWrapper.schema;
                                                                     schemaWrapper.definitions = defs;
@@ -3220,10 +3205,11 @@ public class UsersApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#writeMe");
             e.printStackTrace();
@@ -3243,10 +3229,11 @@ public class UsersApiExample {
 
     public static void main(String[] args) {
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#writeMe");
             e.printStackTrace();
@@ -3271,7 +3258,7 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent
+String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
 AllWritableUserInfo *userInfo = ; // Data the user can update
 
 UsersApi *apiInstance = [[UsersApi alloc] init];
@@ -3279,7 +3266,10 @@ UsersApi *apiInstance = [[UsersApi alloc] init];
 // Updates Information about my account
 [apiInstance writeMeWith:userAgent
     userInfo:userInfo
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(StandardResponseStatus output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -3298,7 +3288,7 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .UsersApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent
+var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
 
 var userInfo = ; // {AllWritableUserInfo} Data the user can update
 
@@ -3307,7 +3297,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.writeMe(userAgent, userInfo, callback);
@@ -3338,13 +3328,14 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UsersApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent
+            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
             var userInfo = new AllWritableUserInfo(); // AllWritableUserInfo | Data the user can update
 
             try
             {
                 // Updates Information about my account
-                apiInstance.writeMe(userAgent, userInfo);
+                StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -3367,11 +3358,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\UsersApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
+$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
 $userInfo = ; // AllWritableUserInfo | Data the user can update
 
 try {
-    $api_instance->writeMe($userAgent, $userInfo);
+    $result = $api_instance->writeMe($userAgent, $userInfo);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->writeMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -3406,7 +3398,7 @@ try {
 													var schemaWrapper = {
   "name" : "User-Agent",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent",
+  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
   "required" : true,
   "type" : "string",
   "x-codegen-hasMoreRequired" : false
@@ -3493,7 +3485,7 @@ try {
 
                                             <h2>Responses</h2>
 
-                                                <h3> Status: 204 - User Updated. </h3>
+                                                <h3> Status: 204 - The items were updated </h3>
 
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
@@ -3524,7 +3516,10 @@ try {
                                                             <script>
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
-  "description" : "User Updated.",
+  "description" : "The items were updated",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -3584,7 +3579,7 @@ try {
 
 
 
-                                                <h3> Status: 400 - User could not be updated. </h3>
+                                                <h3> Status: 400 - The items were updated </h3>
 
                                                 <ul class="nav nav-tabs nav-tabs-examples" >
 
@@ -3615,7 +3610,10 @@ try {
                                                             <script>
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
-  "description" : "User could not be updated.",
+  "description" : "The items were updated",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -3896,7 +3894,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2017-08-01T03:53:59.156Z
+                    Generated 2017-08-01T04:15:44.055Z
                 </div>
             </div>
         </div>
