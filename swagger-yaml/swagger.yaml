@@ -88,6 +88,8 @@ paths:
       responses:
         200:
           description: "Get My Information"
+          schema:
+            $ref: "#/definitions/AllReadableUserInfo"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -140,7 +142,7 @@ paths:
         description: "Data the user can update"
         required: true
         schema:
-          $ref: "#/definitions/AllUserInfo"
+          $ref: "#/definitions/AllWritableUserInfo"
       responses:
         204:
           description: "User Updated."
@@ -197,11 +199,29 @@ securityDefinitions:
       read:me: "read my information, all users are automatically granted this"
       write:me: "write my information, all users are automatically granted this"
 definitions:
-  AllUserInfo:
+  AllReadableUserInfo:
     allOf:
     - $ref: "#/definitions/UserPublicInfo"
     - $ref: "#/definitions/UserProtectedInfo"
     - $ref: "#/definitions/UserPrivateInfo"
+  AllWritableUserInfo:
+    allOf:
+    - $ref: "#/definitions/UserPublicInfo"
+    - $ref: "#/definitions/UserProtectedInfo"
+    - $ref: "#/definitions/UserPrivateInfo"
+    - $ref: "#/definitions/UserPassword"
+  UserPassword:
+    properties:
+      password:
+        type: "string"
+        example: "bats?No!1235"
+        description: "The password lets users login to the api service as well as\
+          \ web services supported by this api"
+        minLength: 8
+        maxLength: 16
+        pattern: "[a-zA-Z0-9!@#\\$%\\^&\\*\\?]{8,16}"
+    title: "A User Password"
+    description: "This password is writable only , and can only be set"
   UserPrivateInfo:
     properties:
       notes:
