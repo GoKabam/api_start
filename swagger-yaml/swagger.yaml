@@ -89,13 +89,11 @@ paths:
       responses:
         200:
           description: "Get My Information"
-          schema:
-            $ref: "#/definitions/AllReadableUserInfo"
           headers: {}
         500:
           description: "An unexpected error occured."
           schema:
-            $ref: "#/definitions/Error"
+            $ref: "#/definitions/StandardResponseStatus"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -109,6 +107,8 @@ paths:
               description: "What is the limit"
         default:
           description: "A totally unexpected response"
+          schema:
+            $ref: "#/definitions/StandardResponseStatus"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -178,7 +178,7 @@ paths:
         500:
           description: "An unexpected error occured."
           schema:
-            $ref: "#/definitions/Error"
+            $ref: "#/definitions/StandardResponseStatus"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -192,6 +192,8 @@ paths:
               description: "What is the limit"
         default:
           description: "A totally unexpected response"
+          schema:
+            $ref: "#/definitions/StandardResponseStatus"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -304,59 +306,6 @@ definitions:
     description: "An array of one or more descriptions about the operation"
     items:
       $ref: "#/definitions/StatusMessages_inner"
-  ErrorMessage:
-    required:
-    - "longMessage"
-    - "shortMessage"
-    properties:
-      longMessage:
-        type: "string"
-        description: "A long error description"
-      shortMessage:
-        type: "string"
-        description: "A short error description"
-    title: "MultiDeviceErrorMessage"
-    description: "An error message with a long and a short description"
-  MultilingualErrorMessage:
-    type: "object"
-    properties:
-      defaultLanguage:
-        $ref: "#/definitions/ErrorMessage"
-    title: "MultiLingualMultiDeviceErrorMessage"
-    description: "An multilingual error message (hashmap) with a long and a short\
-      \ description"
-    example:
-      defaultLanguage:
-        longMessage: "We're deeply sorry but an error occured"
-        shortMessage: "Error"
-      fr:
-        longMessage: "Nous sommes dÃ©solÃ© mais une erreur est survenu"
-        shortMessage: "Erreur"
-    additionalProperties:
-      $ref: "#/definitions/ErrorMessage"
-  Error:
-    required:
-    - "code"
-    - "message"
-    properties:
-      code:
-        type: "string"
-        example: "UNERR"
-        description: "# Error Enum Definitions\n\n  | Name | Definition |\n  | -------\
-          \ | -------- |\n  | DBERR   | A database error occured    |\n  | DBERR \
-          \  | A database error occured    | \nsome texts\nText attributes _italic_,\
-          \ *italic*, __bold__, **bold**, `monospace`.                     \nHorizontal\
-          \ rule \n\n  ---\n\n  Bullet list \n\n    * apples\n    * oranges\n    *\
-          \ pears\n\n  Numbered list\n\n    1. apples\n    2. oranges\n    3. pears\n\
-          \n  A [link](http://example.com).\n\n  \n"
-        enum:
-        - "DBERR"
-        - "NTERR"
-        - "UNERR"
-      message:
-        $ref: "#/definitions/MultilingualErrorMessage"
-    title: "MultiLingualMultiDeviceError"
-    description: "Give full information about the problem"
   StatusMessages_inner:
     required:
     - "code"
@@ -366,7 +315,14 @@ definitions:
       status:
         type: "string"
         example: "OK"
-        description: "A short human readable code"
+        description: "A short human readable code\n\n| Name | Definition |\n| -------\
+          \ | -------- |\n| OK   | Operation was sucessful    |\n| WARNING   | warns\
+          \ of deprecition , or impropper but allowed use    | \n| ERROR   | Something\
+          \ broke    | \n| INFO   | Just a message or a general non warning notice\
+          \    |\n\nText attributes _italic_, *italic*, __bold__, **bold**, `monospace`.\
+          \                     \nHorizontal rule \n\n---\n\nBullet list \n\n  * apples\n\
+          \  * oranges\n  * pears\n\nNumbered list\n\n  1. apples\n  2. oranges\n\
+          \  3. pears\n\nA [link](http://example.com).\n"
         enum:
         - "OK"
         - "WARNING"
@@ -457,7 +413,7 @@ responses:
   Standard500ErrorResponse:
     description: "An unexpected error occured."
     schema:
-      $ref: "#/definitions/Error"
+      $ref: "#/definitions/StandardResponseStatus"
     headers:
       X-Rate-Limit-Remaining:
         type: "integer"
@@ -484,6 +440,8 @@ responses:
         description: "What is the limit"
   TotallyUnexpectedResponse:
     description: "A totally unexpected response"
+    schema:
+      $ref: "#/definitions/StandardResponseStatus"
     headers:
       X-Rate-Limit-Remaining:
         type: "integer"
