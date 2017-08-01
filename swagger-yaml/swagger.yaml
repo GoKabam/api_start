@@ -101,9 +101,8 @@ paths:
               type: "integer"
               description: "How many calls consumer can do"
             X-Rate-Limit-Reset:
-              type: "string"
-              format: "date-time"
-              description: "When rate limit will be reset"
+              type: "integer"
+              description: "When rate limit will be reset in seconds"
             X-Rate-Limit-Limit:
               type: "integer"
               description: "What is the limit"
@@ -116,9 +115,8 @@ paths:
               type: "integer"
               description: "How many calls consumer can do"
             X-Rate-Limit-Reset:
-              type: "string"
-              format: "date-time"
-              description: "When rate limit will be reset"
+              type: "integer"
+              description: "When rate limit will be reset in seconds"
             X-Rate-Limit-Limit:
               type: "integer"
               description: "What is the limit"
@@ -156,9 +154,8 @@ paths:
               type: "integer"
               description: "How many calls consumer can do"
             X-Rate-Limit-Reset:
-              type: "string"
-              format: "date-time"
-              description: "When rate limit will be reset"
+              type: "integer"
+              description: "When rate limit will be reset in seconds"
             X-Rate-Limit-Limit:
               type: "integer"
               description: "What is the limit"
@@ -171,9 +168,8 @@ paths:
               type: "integer"
               description: "How many calls consumer can do"
             X-Rate-Limit-Reset:
-              type: "string"
-              format: "date-time"
-              description: "When rate limit will be reset"
+              type: "integer"
+              description: "When rate limit will be reset in seconds"
             X-Rate-Limit-Limit:
               type: "integer"
               description: "What is the limit"
@@ -186,9 +182,8 @@ paths:
               type: "integer"
               description: "How many calls consumer can do"
             X-Rate-Limit-Reset:
-              type: "string"
-              format: "date-time"
-              description: "When rate limit will be reset"
+              type: "integer"
+              description: "When rate limit will be reset in seconds"
             X-Rate-Limit-Limit:
               type: "integer"
               description: "What is the limit"
@@ -201,9 +196,8 @@ paths:
               type: "integer"
               description: "How many calls consumer can do"
             X-Rate-Limit-Reset:
-              type: "string"
-              format: "date-time"
-              description: "When rate limit will be reset"
+              type: "integer"
+              description: "When rate limit will be reset in seconds"
             X-Rate-Limit-Limit:
               type: "integer"
               description: "What is the limit"
@@ -391,9 +385,8 @@ responses:
         type: "integer"
         description: "How many calls consumer can do"
       X-Rate-Limit-Reset:
-        type: "string"
-        format: "date-time"
-        description: "When rate limit will be reset"
+        type: "integer"
+        description: "When rate limit will be reset in seconds"
       X-Rate-Limit-Limit:
         type: "integer"
         description: "What is the limit"
@@ -406,9 +399,8 @@ responses:
         type: "integer"
         description: "How many calls consumer can do"
       X-Rate-Limit-Reset:
-        type: "string"
-        format: "date-time"
-        description: "When rate limit will be reset"
+        type: "integer"
+        description: "When rate limit will be reset in seconds"
       X-Rate-Limit-Limit:
         type: "integer"
         description: "What is the limit"
@@ -421,9 +413,8 @@ responses:
         type: "integer"
         description: "How many calls consumer can do"
       X-Rate-Limit-Reset:
-        type: "string"
-        format: "date-time"
-        description: "When rate limit will be reset"
+        type: "integer"
+        description: "When rate limit will be reset in seconds"
       X-Rate-Limit-Limit:
         type: "integer"
         description: "What is the limit"
@@ -434,9 +425,8 @@ responses:
         type: "integer"
         description: "How many calls consumer can do"
       X-Rate-Limit-Reset:
-        type: "string"
-        format: "date-time"
-        description: "When rate limit will be reset"
+        type: "integer"
+        description: "When rate limit will be reset in seconds"
       X-Rate-Limit-Limit:
         type: "integer"
         description: "What is the limit"
@@ -449,9 +439,8 @@ responses:
         type: "integer"
         description: "How many calls consumer can do"
       X-Rate-Limit-Reset:
-        type: "string"
-        format: "date-time"
-        description: "When rate limit will be reset"
+        type: "integer"
+        description: "When rate limit will be reset in seconds"
       X-Rate-Limit-Limit:
         type: "integer"
         description: "What is the limit"
