@@ -186,6 +186,9 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+      security:
+      - OauthSecurity:
+        - "write:me"
 securityDefinitions:
   OauthSecurity:
     description: "Oauth security system. All operations are used with it"
