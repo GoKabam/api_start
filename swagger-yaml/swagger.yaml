@@ -89,6 +89,8 @@ paths:
       responses:
         200:
           description: "Get My Information"
+          schema:
+            $ref: "#/definitions/AllReadableUserInfo"
           headers: {}
         500:
           description: "An unexpected error occured."
