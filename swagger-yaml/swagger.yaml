@@ -122,7 +122,7 @@ paths:
               description: "When rate limit will be reset"
       security:
       - OauthSecurity:
-        - "read:user"
+        - "read:me"
     post:
       tags:
       - "users"
@@ -155,7 +155,7 @@ paths:
               format: "date-time"
               description: "When rate limit will be reset"
         400:
-          description: "Person couldn't have been created."
+          description: "User could not be updated."
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
