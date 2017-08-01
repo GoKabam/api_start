@@ -1037,7 +1037,8 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
             e.printStackTrace();
@@ -1068,7 +1069,8 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
             e.printStackTrace();
@@ -1110,7 +1112,10 @@ MeApi *apiInstance = [[MeApi alloc] init];
 [apiInstance readMeWith:acceptLanguage
     pageSize:pageSize
     pageNumber:pageNumber
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(AllReadableUserInfo output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -1147,7 +1152,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.readMe(acceptLanguage, , opts, callback);
@@ -1192,7 +1197,8 @@ es
             try
             {
                 // Gets Informaton about my account
-                apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+                AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -1227,7 +1233,8 @@ $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
+    $result = $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeApi->readMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -1413,6 +1420,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "Get My Information",
+  "schema" : {
+    "$ref" : "#/definitions/AllReadableUserInfo"
+  },
   "headers" : { }
 };
                                                                     var schema = schemaWrapper.schema;
@@ -2561,7 +2571,8 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
             e.printStackTrace();
@@ -2592,7 +2603,8 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
             e.printStackTrace();
@@ -2634,7 +2646,10 @@ UsersApi *apiInstance = [[UsersApi alloc] init];
 [apiInstance readMeWith:acceptLanguage
     pageSize:pageSize
     pageNumber:pageNumber
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(AllReadableUserInfo output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -2671,7 +2686,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.readMe(acceptLanguage, , opts, callback);
@@ -2716,7 +2731,8 @@ es
             try
             {
                 // Gets Informaton about my account
-                apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+                AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -2751,7 +2767,8 @@ $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
+    $result = $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->readMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -2933,6 +2950,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "Get My Information",
+  "schema" : {
+    "$ref" : "#/definitions/AllReadableUserInfo"
+  },
   "headers" : { }
 };
                                                                     var schema = schemaWrapper.schema;
@@ -4000,7 +4020,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2017-08-01T04:43:26.808Z
+                    Generated 2017-08-01T04:45:43.991Z
                 </div>
             </div>
         </div>
