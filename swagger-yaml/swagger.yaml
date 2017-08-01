@@ -169,7 +169,6 @@ paths:
         400:
           description: "User could not be updated."
           headers:
-            X-Rate-Limit-Placeholder: null
             X-Rate-Limit-Remaining:
               type: "integer"
               description: "How many calls consumer can do"
@@ -380,6 +379,7 @@ definitions:
         type: "integer"
         example: 0
         description: "An integer code"
+        minimum: 0
       message:
         type: "string"
         example: "Everything worked ok!"
