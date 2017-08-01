@@ -62,9 +62,10 @@ paths:
         \ and public."
       operationId: "readMe"
       parameters:
-      - name: "User-Agent"
+      - name: "Accept-Language"
         in: "header"
-        description: "All API consumers MUST provide a user agent, like Mozilla/5.0"
+        description: "All API consumers MUST provide a string to show which languages\
+          \ they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n"
         required: true
         type: "string"
       - name: "pageSize"
@@ -131,9 +132,10 @@ paths:
         \ public , private and protected"
       operationId: "writeMe"
       parameters:
-      - name: "User-Agent"
+      - name: "Accept-Language"
         in: "header"
-        description: "All API consumers MUST provide a user agent, like Mozilla/5.0"
+        description: "All API consumers MUST provide a string to show which languages\
+          \ they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n"
         required: true
         type: "string"
       - in: "body"
@@ -414,10 +416,11 @@ parameters:
     required: false
     type: "integer"
     default: 1
-  userAgent:
-    name: "User-Agent"
+  acceptLanguage:
+    name: "Accept-Language"
     in: "header"
-    description: "All API consumers MUST provide a user agent, like Mozilla/5.0"
+    description: "All API consumers MUST provide a string to show which languages\
+      \ they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n"
     required: true
     type: "string"
 responses:
