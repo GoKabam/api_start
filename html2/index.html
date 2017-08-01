@@ -743,60 +743,6 @@ margin-bottom: 20px;
     "$ref" : "#/definitions/UserPassword"
   } ]
 };
-  defs.Error = {
-  "required" : [ "code", "message" ],
-  "properties" : {
-    "code" : {
-      "type" : "string",
-      "example" : "UNERR",
-      "description" : "# Error Enum Definitions\n\n  | Name | Definition |\n  | ------- | -------- |\n  | DBERR   | A database error occured    |\n  | DBERR   | A database error occured    | \nsome texts\nText attributes _italic_, *italic*, __bold__, **bold**, `monospace`.                     \nHorizontal rule \n\n  ---\n\n  Bullet list \n\n    * apples\n    * oranges\n    * pears\n\n  Numbered list\n\n    1. apples\n    2. oranges\n    3. pears\n\n  A [link](http://example.com).\n\n  \n",
-      "enum" : [ "DBERR", "NTERR", "UNERR" ]
-    },
-    "message" : {
-      "$ref" : "#/definitions/MultilingualErrorMessage"
-    }
-  },
-  "title" : "MultiLingualMultiDeviceError",
-  "description" : "Give full information about the problem"
-};
-  defs.ErrorMessage = {
-  "required" : [ "longMessage", "shortMessage" ],
-  "properties" : {
-    "longMessage" : {
-      "type" : "string",
-      "description" : "A long error description"
-    },
-    "shortMessage" : {
-      "type" : "string",
-      "description" : "A short error description"
-    }
-  },
-  "title" : "MultiDeviceErrorMessage",
-  "description" : "An error message with a long and a short description"
-};
-  defs.MultilingualErrorMessage = {
-  "type" : "object",
-  "properties" : {
-    "defaultLanguage" : {
-      "$ref" : "#/definitions/ErrorMessage"
-    }
-  },
-  "title" : "MultiLingualMultiDeviceErrorMessage",
-  "description" : "An multilingual error message (hashmap) with a long and a short description",
-  "example" : {
-    "defaultLanguage" : {
-      "longMessage" : "We're deeply sorry but an error occured",
-      "shortMessage" : "Error"
-    },
-    "fr" : {
-      "longMessage" : "Nous sommes dÃ©solÃ© mais une erreur est survenu",
-      "shortMessage" : "Erreur"
-    }
-  },
-  "additionalProperties" : {
-    "$ref" : "#/definitions/ErrorMessage"
-  }
-};
   defs.StandardResponseStatus = {
   "required" : [ "messages", "status" ],
   "properties" : {
@@ -827,7 +773,7 @@ margin-bottom: 20px;
     "status" : {
       "type" : "string",
       "example" : "OK",
-      "description" : "A short human readable code",
+      "description" : "A short human readable code\n\n| Name | Definition |\n| ------- | -------- |\n| OK   | Operation was sucessful    |\n| WARNING   | warns of deprecition , or impropper but allowed use    | \n| ERROR   | Something broke    | \n| INFO   | Just a message or a general non warning notice    |\n\nText attributes _italic_, *italic*, __bold__, **bold**, `monospace`.                     \nHorizontal rule \n\n---\n\nBullet list \n\n  * apples\n  * oranges\n  * pears\n\nNumbered list\n\n  1. apples\n  2. oranges\n  3. pears\n\nA [link](http://example.com).\n",
       "enum" : [ "OK", "WARNING", "ERROR", "INFO" ]
     },
     "code" : {
@@ -1091,8 +1037,7 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
-            System.out.println(result);
+            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
             e.printStackTrace();
@@ -1123,8 +1068,7 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
-            System.out.println(result);
+            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
             e.printStackTrace();
@@ -1166,10 +1110,7 @@ MeApi *apiInstance = [[MeApi alloc] init];
 [apiInstance readMeWith:acceptLanguage
     pageSize:pageSize
     pageNumber:pageNumber
-              completionHandler: ^(AllReadableUserInfo output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
+              completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -1206,7 +1147,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully.');
   }
 };
 api.readMe(acceptLanguage, , opts, callback);
@@ -1251,8 +1192,7 @@ es
             try
             {
                 // Gets Informaton about my account
-                AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
-                Debug.WriteLine(result);
+                apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
             }
             catch (Exception e)
             {
@@ -1287,8 +1227,7 @@ $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $result = $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
-    print_r($result);
+    $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
 } catch (Exception $e) {
     echo 'Exception when calling MeApi->readMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -1474,9 +1413,6 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "Get My Information",
-  "schema" : {
-    "$ref" : "#/definitions/AllReadableUserInfo"
-  },
   "headers" : { }
 };
                                                                     var schema = schemaWrapper.schema;
@@ -1555,7 +1491,7 @@ try {
                                                                     var schemaWrapper = {
   "description" : "An unexpected error occured.",
   "schema" : {
-    "$ref" : "#/definitions/Error"
+    "$ref" : "#/definitions/StandardResponseStatus"
   },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
@@ -1648,6 +1584,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "A totally unexpected response",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -2352,7 +2291,7 @@ try {
                                                                     var schemaWrapper = {
   "description" : "An unexpected error occured.",
   "schema" : {
-    "$ref" : "#/definitions/Error"
+    "$ref" : "#/definitions/StandardResponseStatus"
   },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
@@ -2445,6 +2384,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "A totally unexpected response",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -2619,8 +2561,7 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
-            System.out.println(result);
+            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
             e.printStackTrace();
@@ -2651,8 +2592,7 @@ es
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
-            System.out.println(result);
+            apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
             e.printStackTrace();
@@ -2694,10 +2634,7 @@ UsersApi *apiInstance = [[UsersApi alloc] init];
 [apiInstance readMeWith:acceptLanguage
     pageSize:pageSize
     pageNumber:pageNumber
-              completionHandler: ^(AllReadableUserInfo output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
+              completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -2734,7 +2671,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully.');
   }
 };
 api.readMe(acceptLanguage, , opts, callback);
@@ -2779,8 +2716,7 @@ es
             try
             {
                 // Gets Informaton about my account
-                AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
-                Debug.WriteLine(result);
+                apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
             }
             catch (Exception e)
             {
@@ -2815,8 +2751,7 @@ $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $result = $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
-    print_r($result);
+    $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->readMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -2998,9 +2933,6 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "Get My Information",
-  "schema" : {
-    "$ref" : "#/definitions/AllReadableUserInfo"
-  },
   "headers" : { }
 };
                                                                     var schema = schemaWrapper.schema;
@@ -3079,7 +3011,7 @@ try {
                                                                     var schemaWrapper = {
   "description" : "An unexpected error occured.",
   "schema" : {
-    "$ref" : "#/definitions/Error"
+    "$ref" : "#/definitions/StandardResponseStatus"
   },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
@@ -3172,6 +3104,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "A totally unexpected response",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -3874,7 +3809,7 @@ try {
                                                                     var schemaWrapper = {
   "description" : "An unexpected error occured.",
   "schema" : {
-    "$ref" : "#/definitions/Error"
+    "$ref" : "#/definitions/StandardResponseStatus"
   },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
@@ -3967,6 +3902,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "A totally unexpected response",
+  "schema" : {
+    "$ref" : "#/definitions/StandardResponseStatus"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -4062,7 +4000,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2017-08-01T04:31:54.046Z
+                    Generated 2017-08-01T04:43:26.808Z
                 </div>
             </div>
         </div>
