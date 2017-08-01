@@ -136,11 +136,11 @@ paths:
         required: true
         type: "string"
       - in: "body"
-        name: "user"
-        description: "The user to create."
-        required: false
+        name: "userInfo"
+        description: "user to add to the system"
+        required: true
         schema:
-          $ref: "#/definitions/user"
+          $ref: "#/definitions/UserPublicInfo"
       responses:
         204:
           description: "User Updated."
@@ -292,17 +292,6 @@ definitions:
         $ref: "#/definitions/MultilingualErrorMessage"
     title: "MultiLingualMultiDeviceError"
     description: "Give full information about the problem"
-  user:
-    type: "object"
-    required:
-    - "userName"
-    properties:
-      userName:
-        type: "string"
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
 parameters:
   pageSize:
     name: "pageSize"
