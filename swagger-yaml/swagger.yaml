@@ -65,7 +65,9 @@ paths:
       - name: "Accept-Language"
         in: "header"
         description: "All API consumers MUST provide a string to show which languages\
-          \ they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n"
+          \ they will accept, for example \n\n* en,en-US,fr;q=0.6\n* en\n* es\n\n\
+          If this app does not support a language listed here then English will be\
+          \ the default language\n"
         required: true
         type: "string"
       - name: "pageSize"
@@ -135,7 +137,9 @@ paths:
       - name: "Accept-Language"
         in: "header"
         description: "All API consumers MUST provide a string to show which languages\
-          \ they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n"
+          \ they will accept, for example \n\n* en,en-US,fr;q=0.6\n* en\n* es\n\n\
+          If this app does not support a language listed here then English will be\
+          \ the default language\n"
         required: true
         type: "string"
       - in: "body"
@@ -372,7 +376,9 @@ parameters:
     name: "Accept-Language"
     in: "header"
     description: "All API consumers MUST provide a string to show which languages\
-      \ they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n"
+      \ they will accept, for example \n\n* en,en-US,fr;q=0.6\n* en\n* es\n\nIf this\
+      \ app does not support a language listed here then English will be the default\
+      \ language\n"
     required: true
     type: "string"
 responses:
