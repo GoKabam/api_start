@@ -98,6 +98,9 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+            X-Rate-Limit-Limit:
+              type: "integer"
+              description: "What is the limit"
         500:
           description: "An unexpected error occured."
           schema:
@@ -110,6 +113,9 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+            X-Rate-Limit-Limit:
+              type: "integer"
+              description: "What is the limit"
         default:
           description: "A totally unexpected response"
           headers:
@@ -120,6 +126,9 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+            X-Rate-Limit-Limit:
+              type: "integer"
+              description: "What is the limit"
       security:
       - OauthSecurity:
         - "read:me"
@@ -154,9 +163,13 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+            X-Rate-Limit-Limit:
+              type: "integer"
+              description: "What is the limit"
         400:
           description: "User could not be updated."
           headers:
+            X-Rate-Limit-Placeholder: null
             X-Rate-Limit-Remaining:
               type: "integer"
               description: "How many calls consumer can do"
@@ -164,6 +177,9 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+            X-Rate-Limit-Limit:
+              type: "integer"
+              description: "What is the limit"
         500:
           description: "An unexpected error occured."
           schema:
@@ -176,6 +192,9 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+            X-Rate-Limit-Limit:
+              type: "integer"
+              description: "What is the limit"
         default:
           description: "A totally unexpected response"
           headers:
@@ -186,6 +205,9 @@ paths:
               type: "string"
               format: "date-time"
               description: "When rate limit will be reset"
+            X-Rate-Limit-Limit:
+              type: "integer"
+              description: "What is the limit"
       security:
       - OauthSecurity:
         - "write:me"
@@ -267,6 +289,26 @@ definitions:
         readOnly: true
     title: "Public User Information"
     description: "Anyone can see this information at all times"
+  StandardResponseStatus:
+    required:
+    - "messages"
+    - "status"
+    properties:
+      status:
+        type: "boolean"
+        example: true
+        description: "whether the operation succeeded or failed"
+        default: true
+      messages:
+        $ref: "#/definitions/StatusMessages"
+    title: "Operation Successful"
+    description: "Give full information about the problem"
+  StatusMessages:
+    title: "Status Messages"
+    type: "array"
+    description: "An array of one or more descriptions about the operation"
+    items:
+      $ref: "#/definitions/StatusMessages_inner"
   ErrorMessage:
     required:
     - "longMessage"
@@ -320,6 +362,42 @@ definitions:
         $ref: "#/definitions/MultilingualErrorMessage"
     title: "MultiLingualMultiDeviceError"
     description: "Give full information about the problem"
+  StatusMessages_inner:
+    required:
+    - "code"
+    - "message"
+    - "status"
+    properties:
+      status:
+        type: "string"
+        example: "OK"
+        description: "A short human readable code"
+        enum:
+        - "OK"
+        - "WARNING"
+        - "ERROR"
+      code:
+        type: "integer"
+        example: 0
+        description: "An integer code"
+      message:
+        type: "string"
+        example: "Everything worked ok!"
+        description: "a message describing the status"
+        title: "Status Message"
+      field:
+        type: "string"
+        example: "UserName"
+        description: "The field this status applies to, if missing its for the whole\
+          \ call"
+        title: "Field"
+        default: "null"
+      docs:
+        type: "string"
+        example: "https://docs.gokabam.com/code/0"
+        description: "More information about this code can be found here"
+        title: "External Docs"
+        default: "null"
 parameters:
   pageSize:
     name: "pageSize"
@@ -348,6 +426,21 @@ parameters:
     required: true
     type: "string"
 responses:
+  Standard200UpdateResponse:
+    description: "The items were updated"
+    schema:
+      $ref: "#/definitions/StandardResponseStatus"
+    headers:
+      X-Rate-Limit-Remaining:
+        type: "integer"
+        description: "How many calls consumer can do"
+      X-Rate-Limit-Reset:
+        type: "string"
+        format: "date-time"
+        description: "When rate limit will be reset"
+      X-Rate-Limit-Limit:
+        type: "integer"
+        description: "What is the limit"
   Standard500ErrorResponse:
     description: "An unexpected error occured."
     schema:
@@ -360,6 +453,9 @@ responses:
         type: "string"
         format: "date-time"
         description: "When rate limit will be reset"
+      X-Rate-Limit-Limit:
+        type: "integer"
+        description: "What is the limit"
   PersonDoesNotExistResponse:
     description: "Person does not exist."
     headers:
@@ -370,6 +466,9 @@ responses:
         type: "string"
         format: "date-time"
         description: "When rate limit will be reset"
+      X-Rate-Limit-Limit:
+        type: "integer"
+        description: "What is the limit"
   TotallyUnexpectedResponse:
     description: "A totally unexpected response"
     headers:
@@ -380,3 +479,6 @@ responses:
         type: "string"
         format: "date-time"
         description: "When rate limit will be reset"
+      X-Rate-Limit-Limit:
+        type: "integer"
+        description: "What is the limit"
