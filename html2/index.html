@@ -797,6 +797,66 @@ margin-bottom: 20px;
     "$ref" : "#/definitions/ErrorMessage"
   }
 };
+  defs.StandardResponseStatus = {
+  "required" : [ "messages", "status" ],
+  "properties" : {
+    "status" : {
+      "type" : "boolean",
+      "example" : true,
+      "description" : "whether the operation succeeded or failed",
+      "default" : true
+    },
+    "messages" : {
+      "$ref" : "#/definitions/StatusMessages"
+    }
+  },
+  "title" : "Operation Successful",
+  "description" : "Give full information about the problem"
+};
+  defs.StatusMessages = {
+  "title" : "Status Messages",
+  "type" : "array",
+  "description" : "An array of one or more descriptions about the operation",
+  "items" : {
+    "$ref" : "#/definitions/StatusMessages_inner"
+  }
+};
+  defs.StatusMessages_inner = {
+  "required" : [ "code", "message", "status" ],
+  "properties" : {
+    "status" : {
+      "type" : "string",
+      "example" : "OK",
+      "description" : "A short human readable code",
+      "enum" : [ "OK", "WARNING", "ERROR" ]
+    },
+    "code" : {
+      "type" : "integer",
+      "example" : 0,
+      "description" : "An integer code"
+    },
+    "message" : {
+      "type" : "string",
+      "example" : "Everything worked ok!",
+      "description" : "a message describing the status",
+      "title" : "Status Message"
+    },
+    "field" : {
+      "type" : "string",
+      "example" : "UserName",
+      "description" : "The field this status applies to, if missing its for the whole call",
+      "title" : "Field",
+      "default" : "null"
+    },
+    "docs" : {
+      "type" : "string",
+      "example" : "https://docs.gokabam.com/code/0",
+      "description" : "More information about this code can be found here",
+      "title" : "External Docs",
+      "default" : "null"
+    }
+  }
+};
   defs.UserPassword = {
   "properties" : {
     "password" : {
@@ -2117,6 +2177,7 @@ try {
                                                                     var schemaWrapper = {
   "description" : "User could not be updated.",
   "headers" : {
+    "X-Rate-Limit-Placeholder" : null,
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
       "description" : "How many calls consumer can do"
@@ -3556,6 +3617,7 @@ try {
                                                                     var schemaWrapper = {
   "description" : "User could not be updated.",
   "headers" : {
+    "X-Rate-Limit-Placeholder" : null,
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
       "description" : "How many calls consumer can do"
@@ -3835,7 +3897,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2017-08-01T03:05:03.003Z
+                    Generated 2017-08-01T03:49:13.322Z
                 </div>
             </div>
         </div>
