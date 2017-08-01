@@ -723,13 +723,24 @@ margin-bottom: 20px;
 
   var defs = {}
 
-  defs.AllUserInfo = {
+  defs.AllReadableUserInfo = {
   "allOf" : [ {
     "$ref" : "#/definitions/UserPublicInfo"
   }, {
     "$ref" : "#/definitions/UserProtectedInfo"
   }, {
     "$ref" : "#/definitions/UserPrivateInfo"
+  } ]
+};
+  defs.AllWritableUserInfo = {
+  "allOf" : [ {
+    "$ref" : "#/definitions/UserPublicInfo"
+  }, {
+    "$ref" : "#/definitions/UserProtectedInfo"
+  }, {
+    "$ref" : "#/definitions/UserPrivateInfo"
+  }, {
+    "$ref" : "#/definitions/UserPassword"
   } ]
 };
   defs.Error = {
@@ -785,6 +796,20 @@ margin-bottom: 20px;
   "additionalProperties" : {
     "$ref" : "#/definitions/ErrorMessage"
   }
+};
+  defs.UserPassword = {
+  "properties" : {
+    "password" : {
+      "type" : "string",
+      "example" : "bats?No!1235",
+      "description" : "The password lets users login to the api service as well as web services supported by this api",
+      "minLength" : 8,
+      "maxLength" : 16,
+      "pattern" : "[a-zA-Z0-9!@#\\$%\\^&\\*\\?]{8,16}"
+    }
+  },
+  "title" : "A User Password",
+  "description" : "This password is writable only , and can only be set"
 };
   defs.UserPrivateInfo = {
   "properties" : {
@@ -998,7 +1023,8 @@ public class MeApiExample {
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
             e.printStackTrace();
@@ -1022,7 +1048,8 @@ public class MeApiExample {
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
             e.printStackTrace();
@@ -1057,7 +1084,10 @@ MeApi *apiInstance = [[MeApi alloc] init];
 [apiInstance readMeWith:userAgent
     pageSize:pageSize
     pageNumber:pageNumber
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(AllReadableUserInfo output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -1087,7 +1117,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.readMe(userAgent, , opts, callback);
@@ -1125,7 +1155,8 @@ namespace Example
             try
             {
                 // Gets Informaton about my account
-                apiInstance.readMe(userAgent, pageSize, pageNumber);
+                AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -1153,7 +1184,8 @@ $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $api_instance->readMe($userAgent, $pageSize, $pageNumber);
+    $result = $api_instance->readMe($userAgent, $pageSize, $pageNumber);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeApi->readMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -1339,6 +1371,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "Get My Information",
+  "schema" : {
+    "$ref" : "#/definitions/AllReadableUserInfo"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -1672,7 +1707,7 @@ public class MeApiExample {
 
         MeApi apiInstance = new MeApi();
         String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
-        AllUserInfo userInfo = ; // AllUserInfo | Data the user can update
+        AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
             apiInstance.writeMe(userAgent, userInfo);
         } catch (ApiException e) {
@@ -1695,7 +1730,7 @@ public class MeApiExample {
     public static void main(String[] args) {
         MeApi apiInstance = new MeApi();
         String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
-        AllUserInfo userInfo = ; // AllUserInfo | Data the user can update
+        AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
             apiInstance.writeMe(userAgent, userInfo);
         } catch (ApiException e) {
@@ -1723,7 +1758,7 @@ Configuration *apiConfig = [Configuration sharedConfig];
 
 
 String *userAgent = userAgent_example; // All API consumers MUST provide a user agent
-AllUserInfo *userInfo = ; // Data the user can update
+AllWritableUserInfo *userInfo = ; // Data the user can update
 
 MeApi *apiInstance = [[MeApi alloc] init];
 
@@ -1751,7 +1786,7 @@ var api = new .MeApi()
 
 var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent
 
-var userInfo = ; // {AllUserInfo} Data the user can update
+var userInfo = ; // {AllWritableUserInfo} Data the user can update
 
 
 var callback = function(error, data, response) {
@@ -1790,7 +1825,7 @@ namespace Example
 
             var apiInstance = new MeApi();
             var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent
-            var userInfo = new AllUserInfo(); // AllUserInfo | Data the user can update
+            var userInfo = new AllWritableUserInfo(); // AllWritableUserInfo | Data the user can update
 
             try
             {
@@ -1819,7 +1854,7 @@ io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR
 
 $api_instance = new io.swagger.client\Api\MeApi();
 $userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
-$userInfo = ; // AllUserInfo | Data the user can update
+$userInfo = ; // AllWritableUserInfo | Data the user can update
 
 try {
     $api_instance->writeMe($userAgent, $userInfo);
@@ -1906,7 +1941,7 @@ try {
   "description" : "Data the user can update",
   "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/AllUserInfo"
+    "$ref" : "#/definitions/AllWritableUserInfo"
   },
   "x-codegen-hasMoreRequired" : false
 };
@@ -2405,7 +2440,8 @@ public class UsersApiExample {
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
             e.printStackTrace();
@@ -2429,7 +2465,8 @@ public class UsersApiExample {
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
             e.printStackTrace();
@@ -2464,7 +2501,10 @@ UsersApi *apiInstance = [[UsersApi alloc] init];
 [apiInstance readMeWith:userAgent
     pageSize:pageSize
     pageNumber:pageNumber
-              completionHandler: ^(NSError* error) {
+              completionHandler: ^(AllReadableUserInfo output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -2494,7 +2534,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.readMe(userAgent, , opts, callback);
@@ -2532,7 +2572,8 @@ namespace Example
             try
             {
                 // Gets Informaton about my account
-                apiInstance.readMe(userAgent, pageSize, pageNumber);
+                AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -2560,7 +2601,8 @@ $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $api_instance->readMe($userAgent, $pageSize, $pageNumber);
+    $result = $api_instance->readMe($userAgent, $pageSize, $pageNumber);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->readMe: ', $e->getMessage(), PHP_EOL;
 }
@@ -2742,6 +2784,9 @@ try {
                                                                 $(document).ready(function() {
                                                                     var schemaWrapper = {
   "description" : "Get My Information",
+  "schema" : {
+    "$ref" : "#/definitions/AllReadableUserInfo"
+  },
   "headers" : {
     "X-Rate-Limit-Remaining" : {
       "type" : "integer",
@@ -3075,7 +3120,7 @@ public class UsersApiExample {
 
         UsersApi apiInstance = new UsersApi();
         String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
-        AllUserInfo userInfo = ; // AllUserInfo | Data the user can update
+        AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
             apiInstance.writeMe(userAgent, userInfo);
         } catch (ApiException e) {
@@ -3098,7 +3143,7 @@ public class UsersApiExample {
     public static void main(String[] args) {
         UsersApi apiInstance = new UsersApi();
         String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
-        AllUserInfo userInfo = ; // AllUserInfo | Data the user can update
+        AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
             apiInstance.writeMe(userAgent, userInfo);
         } catch (ApiException e) {
@@ -3126,7 +3171,7 @@ Configuration *apiConfig = [Configuration sharedConfig];
 
 
 String *userAgent = userAgent_example; // All API consumers MUST provide a user agent
-AllUserInfo *userInfo = ; // Data the user can update
+AllWritableUserInfo *userInfo = ; // Data the user can update
 
 UsersApi *apiInstance = [[UsersApi alloc] init];
 
@@ -3154,7 +3199,7 @@ var api = new .UsersApi()
 
 var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent
 
-var userInfo = ; // {AllUserInfo} Data the user can update
+var userInfo = ; // {AllWritableUserInfo} Data the user can update
 
 
 var callback = function(error, data, response) {
@@ -3193,7 +3238,7 @@ namespace Example
 
             var apiInstance = new UsersApi();
             var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent
-            var userInfo = new AllUserInfo(); // AllUserInfo | Data the user can update
+            var userInfo = new AllWritableUserInfo(); // AllWritableUserInfo | Data the user can update
 
             try
             {
@@ -3222,7 +3267,7 @@ io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR
 
 $api_instance = new io.swagger.client\Api\UsersApi();
 $userAgent = userAgent_example; // String | All API consumers MUST provide a user agent
-$userInfo = ; // AllUserInfo | Data the user can update
+$userInfo = ; // AllWritableUserInfo | Data the user can update
 
 try {
     $api_instance->writeMe($userAgent, $userInfo);
@@ -3308,7 +3353,7 @@ try {
   "description" : "Data the user can update",
   "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/AllUserInfo"
+    "$ref" : "#/definitions/AllWritableUserInfo"
   }
 };
 													
@@ -3734,7 +3779,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2017-08-01T01:58:01.807Z
+                    Generated 2017-08-01T02:16:34.322Z
                 </div>
             </div>
         </div>
