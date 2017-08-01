@@ -1080,11 +1080,18 @@ public class MeApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
@@ -1105,11 +1112,18 @@ public class MeApiExample {
 
     public static void main(String[] args) {
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#readMe");
@@ -1135,14 +1149,21 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
+String *acceptLanguage = acceptLanguage_example; // All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 Integer *pageSize = 56; // Number of persons returned (optional) (default to 20)
 Integer *pageNumber = 56; // Page number (optional) (default to 1)
 
 MeApi *apiInstance = [[MeApi alloc] init];
 
 // Gets Informaton about my account
-[apiInstance readMeWith:userAgent
+[apiInstance readMeWith:acceptLanguage
     pageSize:pageSize
     pageNumber:pageNumber
               completionHandler: ^(AllReadableUserInfo output, NSError* error) {
@@ -1167,7 +1188,14 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .MeApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
+var acceptLanguage = acceptLanguage_example; // {String} All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 
 var opts = { 
   'pageSize': 56, // {Integer} Number of persons returned
@@ -1181,7 +1209,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.readMe(userAgent, , opts, callback);
+api.readMe(acceptLanguage, , opts, callback);
 
                                                     </code></pre>
                                                 </div>
@@ -1209,14 +1237,21 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MeApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+            var acceptLanguage = acceptLanguage_example;  // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
             var pageSize = 56;  // Integer | Number of persons returned (optional)  (default to 20)
             var pageNumber = 56;  // Integer | Page number (optional)  (default to 1)
 
             try
             {
                 // Gets Informaton about my account
-                AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+                AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1240,12 +1275,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\MeApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+$acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $result = $api_instance->readMe($userAgent, $pageSize, $pageNumber);
+    $result = $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeApi->readMe: ', $e->getMessage(), PHP_EOL;
@@ -1272,16 +1314,16 @@ try {
                                                         <th>Description</th>
                                                     </tr>
                                                     <!---->
-                                                        <tr><td style="width:150px;">userAgent*</td>
+                                                        <tr><td style="width:150px;">acceptLanguage*</td>
 <td>
 
 
 <script>
 												$(document).ready(function() {
 													var schemaWrapper = {
-  "name" : "User-Agent",
+  "name" : "Accept-Language",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
+  "description" : "All API consumers MUST provide a string to show which languages they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n",
   "required" : true,
   "type" : "string",
   "x-codegen-hasMoreRequired" : false
@@ -1292,7 +1334,7 @@ try {
 
 
 													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_readMe_userAgent');
+													var result = $('#d2e199_readMe_acceptLanguage');
 													result.empty();
 													result.append(view.render());
 
@@ -1302,7 +1344,7 @@ try {
 
 												});
 												</script>
-												<div id="d2e199_readMe_userAgent"></div>
+												<div id="d2e199_readMe_acceptLanguage"></div>
 </td>
 </tr>
 
@@ -1765,10 +1807,17 @@ public class MeApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(acceptLanguage, userInfo);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#writeMe");
@@ -1789,10 +1838,17 @@ public class MeApiExample {
 
     public static void main(String[] args) {
         MeApi apiInstance = new MeApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(acceptLanguage, userInfo);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MeApi#writeMe");
@@ -1818,13 +1874,20 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
+String *acceptLanguage = acceptLanguage_example; // All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 AllWritableUserInfo *userInfo = ; // Data the user can update
 
 MeApi *apiInstance = [[MeApi alloc] init];
 
 // Updates Information about my account
-[apiInstance writeMeWith:userAgent
+[apiInstance writeMeWith:acceptLanguage
     userInfo:userInfo
               completionHandler: ^(StandardResponseStatus output, NSError* error) {
                             if (output) {
@@ -1848,7 +1911,14 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .MeApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
+var acceptLanguage = acceptLanguage_example; // {String} All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 
 var userInfo = ; // {AllWritableUserInfo} Data the user can update
 
@@ -1860,7 +1930,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.writeMe(userAgent, userInfo, callback);
+api.writeMe(acceptLanguage, userInfo, callback);
 
                                                     </code></pre>
                                                 </div>
@@ -1888,13 +1958,20 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MeApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+            var acceptLanguage = acceptLanguage_example;  // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
             var userInfo = new AllWritableUserInfo(); // AllWritableUserInfo | Data the user can update
 
             try
             {
                 // Updates Information about my account
-                StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+                StandardResponseStatus result = apiInstance.writeMe(acceptLanguage, userInfo);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1918,11 +1995,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\MeApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+$acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 $userInfo = ; // AllWritableUserInfo | Data the user can update
 
 try {
-    $result = $api_instance->writeMe($userAgent, $userInfo);
+    $result = $api_instance->writeMe($acceptLanguage, $userInfo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MeApi->writeMe: ', $e->getMessage(), PHP_EOL;
@@ -1949,16 +2033,16 @@ try {
                                                         <th>Description</th>
                                                     </tr>
                                                     <!---->
-                                                        <tr><td style="width:150px;">userAgent*</td>
+                                                        <tr><td style="width:150px;">acceptLanguage*</td>
 <td>
 
 
 <script>
 												$(document).ready(function() {
 													var schemaWrapper = {
-  "name" : "User-Agent",
+  "name" : "Accept-Language",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
+  "description" : "All API consumers MUST provide a string to show which languages they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n",
   "required" : true,
   "type" : "string",
   "x-codegen-hasMoreRequired" : true,
@@ -1970,7 +2054,7 @@ try {
 
 
 													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_writeMe_userAgent');
+													var result = $('#d2e199_writeMe_acceptLanguage');
 													result.empty();
 													result.append(view.render());
 
@@ -1980,7 +2064,7 @@ try {
 
 												});
 												</script>
-												<div id="d2e199_writeMe_userAgent"></div>
+												<div id="d2e199_writeMe_acceptLanguage"></div>
 </td>
 </tr>
 
@@ -2524,11 +2608,18 @@ public class UsersApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
@@ -2549,11 +2640,18 @@ public class UsersApiExample {
 
     public static void main(String[] args) {
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         Integer pageSize = 56; // Integer | Number of persons returned
         Integer pageNumber = 56; // Integer | Page number
         try {
-            AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+            AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#readMe");
@@ -2579,14 +2677,21 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
+String *acceptLanguage = acceptLanguage_example; // All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 Integer *pageSize = 56; // Number of persons returned (optional) (default to 20)
 Integer *pageNumber = 56; // Page number (optional) (default to 1)
 
 UsersApi *apiInstance = [[UsersApi alloc] init];
 
 // Gets Informaton about my account
-[apiInstance readMeWith:userAgent
+[apiInstance readMeWith:acceptLanguage
     pageSize:pageSize
     pageNumber:pageNumber
               completionHandler: ^(AllReadableUserInfo output, NSError* error) {
@@ -2611,7 +2716,14 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .UsersApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
+var acceptLanguage = acceptLanguage_example; // {String} All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 
 var opts = { 
   'pageSize': 56, // {Integer} Number of persons returned
@@ -2625,7 +2737,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.readMe(userAgent, , opts, callback);
+api.readMe(acceptLanguage, , opts, callback);
 
                                                     </code></pre>
                                                 </div>
@@ -2653,14 +2765,21 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UsersApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+            var acceptLanguage = acceptLanguage_example;  // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
             var pageSize = 56;  // Integer | Number of persons returned (optional)  (default to 20)
             var pageNumber = 56;  // Integer | Page number (optional)  (default to 1)
 
             try
             {
                 // Gets Informaton about my account
-                AllReadableUserInfo result = apiInstance.readMe(userAgent, pageSize, pageNumber);
+                AllReadableUserInfo result = apiInstance.readMe(acceptLanguage, pageSize, pageNumber);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2684,12 +2803,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\UsersApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+$acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 $pageSize = 56; // Integer | Number of persons returned
 $pageNumber = 56; // Integer | Page number
 
 try {
-    $result = $api_instance->readMe($userAgent, $pageSize, $pageNumber);
+    $result = $api_instance->readMe($acceptLanguage, $pageSize, $pageNumber);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->readMe: ', $e->getMessage(), PHP_EOL;
@@ -2716,16 +2842,16 @@ try {
                                                         <th>Description</th>
                                                     </tr>
                                                     <!---->
-                                                        <tr><td style="width:150px;">userAgent*</td>
+                                                        <tr><td style="width:150px;">acceptLanguage*</td>
 <td>
 
 
 <script>
 												$(document).ready(function() {
 													var schemaWrapper = {
-  "name" : "User-Agent",
+  "name" : "Accept-Language",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
+  "description" : "All API consumers MUST provide a string to show which languages they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n",
   "required" : true,
   "type" : "string"
 };
@@ -2735,7 +2861,7 @@ try {
 
 
 													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_readMe_userAgent');
+													var result = $('#d2e199_readMe_acceptLanguage');
 													result.empty();
 													result.append(view.render());
 
@@ -2745,7 +2871,7 @@ try {
 
 												});
 												</script>
-												<div id="d2e199_readMe_userAgent"></div>
+												<div id="d2e199_readMe_acceptLanguage"></div>
 </td>
 </tr>
 
@@ -3205,10 +3331,17 @@ public class UsersApiExample {
         OauthSecurity.setAccessToken("YOUR ACCESS TOKEN");
 
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(acceptLanguage, userInfo);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#writeMe");
@@ -3229,10 +3362,17 @@ public class UsersApiExample {
 
     public static void main(String[] args) {
         UsersApi apiInstance = new UsersApi();
-        String userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+        String acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
         AllWritableUserInfo userInfo = ; // AllWritableUserInfo | Data the user can update
         try {
-            StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+            StandardResponseStatus result = apiInstance.writeMe(acceptLanguage, userInfo);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#writeMe");
@@ -3258,13 +3398,20 @@ Configuration *apiConfig = [Configuration sharedConfig];
 [apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
 
 
-String *userAgent = userAgent_example; // All API consumers MUST provide a user agent, like Mozilla/5.0
+String *acceptLanguage = acceptLanguage_example; // All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 AllWritableUserInfo *userInfo = ; // Data the user can update
 
 UsersApi *apiInstance = [[UsersApi alloc] init];
 
 // Updates Information about my account
-[apiInstance writeMeWith:userAgent
+[apiInstance writeMeWith:acceptLanguage
     userInfo:userInfo
               completionHandler: ^(StandardResponseStatus output, NSError* error) {
                             if (output) {
@@ -3288,7 +3435,14 @@ OauthSecurity.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new .UsersApi()
 
-var userAgent = userAgent_example; // {String} All API consumers MUST provide a user agent, like Mozilla/5.0
+var acceptLanguage = acceptLanguage_example; // {String} All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 
 var userInfo = ; // {AllWritableUserInfo} Data the user can update
 
@@ -3300,7 +3454,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.writeMe(userAgent, userInfo, callback);
+api.writeMe(acceptLanguage, userInfo, callback);
 
                                                     </code></pre>
                                                 </div>
@@ -3328,13 +3482,20 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UsersApi();
-            var userAgent = userAgent_example;  // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+            var acceptLanguage = acceptLanguage_example;  // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
             var userInfo = new AllWritableUserInfo(); // AllWritableUserInfo | Data the user can update
 
             try
             {
                 // Updates Information about my account
-                StandardResponseStatus result = apiInstance.writeMe(userAgent, userInfo);
+                StandardResponseStatus result = apiInstance.writeMe(acceptLanguage, userInfo);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3358,11 +3519,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 io.swagger.client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 $api_instance = new io.swagger.client\Api\UsersApi();
-$userAgent = userAgent_example; // String | All API consumers MUST provide a user agent, like Mozilla/5.0
+$acceptLanguage = acceptLanguage_example; // String | All API consumers MUST provide a string to show which languages they will accept, for example 
+
+en,en-US,fr;q=0.6
+
+en
+
+es
+
 $userInfo = ; // AllWritableUserInfo | Data the user can update
 
 try {
-    $result = $api_instance->writeMe($userAgent, $userInfo);
+    $result = $api_instance->writeMe($acceptLanguage, $userInfo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->writeMe: ', $e->getMessage(), PHP_EOL;
@@ -3389,16 +3557,16 @@ try {
                                                         <th>Description</th>
                                                     </tr>
                                                     <!---->
-                                                        <tr><td style="width:150px;">userAgent*</td>
+                                                        <tr><td style="width:150px;">acceptLanguage*</td>
 <td>
 
 
 <script>
 												$(document).ready(function() {
 													var schemaWrapper = {
-  "name" : "User-Agent",
+  "name" : "Accept-Language",
   "in" : "header",
-  "description" : "All API consumers MUST provide a user agent, like Mozilla/5.0",
+  "description" : "All API consumers MUST provide a string to show which languages they will accept, for example \n\nen,en-US,fr;q=0.6\n\nen\n\nes\n",
   "required" : true,
   "type" : "string",
   "x-codegen-hasMoreRequired" : false
@@ -3409,7 +3577,7 @@ try {
 
 
 													var view = new JSONSchemaView(schema,0);
-													var result = $('#d2e199_writeMe_userAgent');
+													var result = $('#d2e199_writeMe_acceptLanguage');
 													result.empty();
 													result.append(view.render());
 
@@ -3419,7 +3587,7 @@ try {
 
 												});
 												</script>
-												<div id="d2e199_writeMe_userAgent"></div>
+												<div id="d2e199_writeMe_acceptLanguage"></div>
 </td>
 </tr>
 
@@ -3894,7 +4062,7 @@ try {
             </div>
             <div id="generator">
                 <div class="content">
-                    Generated 2017-08-01T04:16:59.196Z
+                    Generated 2017-08-01T04:31:54.046Z
                 </div>
             </div>
         </div>
