@@ -64,7 +64,7 @@ paths:
       parameters:
       - name: "User-Agent"
         in: "header"
-        description: "All API consumers MUST provide a user agent"
+        description: "All API consumers MUST provide a user agent, like Mozilla/5.0"
         required: true
         type: "string"
       - name: "pageSize"
@@ -90,17 +90,7 @@ paths:
           description: "Get My Information"
           schema:
             $ref: "#/definitions/AllReadableUserInfo"
-          headers:
-            X-Rate-Limit-Remaining:
-              type: "integer"
-              description: "How many calls consumer can do"
-            X-Rate-Limit-Reset:
-              type: "string"
-              format: "date-time"
-              description: "When rate limit will be reset"
-            X-Rate-Limit-Limit:
-              type: "integer"
-              description: "What is the limit"
+          headers: {}
         500:
           description: "An unexpected error occured."
           schema:
@@ -143,7 +133,7 @@ paths:
       parameters:
       - name: "User-Agent"
         in: "header"
-        description: "All API consumers MUST provide a user agent"
+        description: "All API consumers MUST provide a user agent, like Mozilla/5.0"
         required: true
         type: "string"
       - in: "body"
@@ -154,7 +144,9 @@ paths:
           $ref: "#/definitions/AllWritableUserInfo"
       responses:
         204:
-          description: "User Updated."
+          description: "The items were updated"
+          schema:
+            $ref: "#/definitions/StandardResponseStatus"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -167,7 +159,9 @@ paths:
               type: "integer"
               description: "What is the limit"
         400:
-          description: "User could not be updated."
+          description: "The items were updated"
+          schema:
+            $ref: "#/definitions/StandardResponseStatus"
           headers:
             X-Rate-Limit-Remaining:
               type: "integer"
@@ -300,8 +294,8 @@ definitions:
         default: true
       messages:
         $ref: "#/definitions/StatusMessages"
-    title: "Operation Successful"
-    description: "Give full information about the problem"
+    title: "Standard Response Status"
+    description: "Gives an overview and can also list specific issues or data"
   StatusMessages:
     title: "Status Messages"
     type: "array"
@@ -375,6 +369,7 @@ definitions:
         - "OK"
         - "WARNING"
         - "ERROR"
+        - "INFO"
       code:
         type: "integer"
         example: 0
@@ -422,11 +417,26 @@ parameters:
   userAgent:
     name: "User-Agent"
     in: "header"
-    description: "All API consumers MUST provide a user agent"
+    description: "All API consumers MUST provide a user agent, like Mozilla/5.0"
     required: true
     type: "string"
 responses:
-  Standard200UpdateResponse:
+  Standard204UpdateOkResponse:
+    description: "The items were updated"
+    schema:
+      $ref: "#/definitions/StandardResponseStatus"
+    headers:
+      X-Rate-Limit-Remaining:
+        type: "integer"
+        description: "How many calls consumer can do"
+      X-Rate-Limit-Reset:
+        type: "string"
+        format: "date-time"
+        description: "When rate limit will be reset"
+      X-Rate-Limit-Limit:
+        type: "integer"
+        description: "What is the limit"
+  Standard400UpdateErrorResponse:
     description: "The items were updated"
     schema:
       $ref: "#/definitions/StandardResponseStatus"
