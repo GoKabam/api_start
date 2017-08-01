@@ -137,10 +137,10 @@ paths:
         type: "string"
       - in: "body"
         name: "userInfo"
-        description: "user to add to the system"
+        description: "Data the user can update"
         required: true
         schema:
-          $ref: "#/definitions/UserPublicInfo"
+          $ref: "#/definitions/AllUserInfo"
       responses:
         204:
           description: "User Updated."
@@ -197,6 +197,11 @@ securityDefinitions:
       read:me: "read my information, all users are automatically granted this"
       write:me: "write my information, all users are automatically granted this"
 definitions:
+  AllUserInfo:
+    allOf:
+    - $ref: "#/definitions/UserPublicInfo"
+    - $ref: "#/definitions/UserProtectedInfo"
+    - $ref: "#/definitions/UserPrivateInfo"
   UserPrivateInfo:
     properties:
       notes:
