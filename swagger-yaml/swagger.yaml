@@ -1,9 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  description: "GoKabam API , access to all the GoKabam Services\n\nThis API will\
-    \ cover all functionality for the company, including private management, administration\
-    \ and finances\n"
+  description: "| Name | Definition |\n| ------- | -------- |\n| Will | Bored |\n"
   version: "1.0.0"
   title: "GoKabam API"
   contact:
@@ -15,7 +13,8 @@ host: "virtserver.swaggerhub.com"
 basePath: "/willwoodlief/gokabam.alpha/1.0.0"
 tags:
 - name: "users"
-  description: "Operations/information about regular users"
+  description: "Operations/information about regular users\nmake a long comment here\
+    \ to see something\n\n\nvery long\n"
 - name: "me"
   description: "An operation just effecting the logged in user"
 - name: "companies"
