@@ -14,7 +14,7 @@ basePath: "/willwoodlief/gokabam.alpha/1.0.0"
 tags:
 - name: "users"
   description: "Operations/information about regular users\nmake a long comment here\
-    \ to see something\n\n\nvery long\n"
+    \ to see something\n\nlonger\n\nmuch longer\n\n\ntoo long \n\nvery long\n"
 - name: "me"
   description: "An operation just effecting the logged in user"
 - name: "companies"
